@@ -6,6 +6,6 @@ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
 Name: mbevocoder
 Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
-Libs: -L${libdir} -lmbevocoder
+Libs: -L${libdir} -l@MBEVOCODER_PC_LIBNAME@
 Libs.private: @MBEVOCODER_PC_PRIVATE_LIBS@
 Cflags: -I${includedir} -DMBE_STATIC

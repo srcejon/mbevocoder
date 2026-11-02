@@ -235,8 +235,12 @@ else()
         string(APPEND MBEVOCODER_PC_PREFIX "/..")
     endforeach()
 endif()
-configure_file(cmake/mbevocoder.pc.in "${CMAKE_CURRENT_BINARY_DIR}/mbevocoder.pc" @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/mbevocoder.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+# The library name carries the Debug postfix, so the file is generated per configuration.
+set(MBEVOCODER_PC_LIBNAME "mbevocoder$<$<CONFIG:Debug>:d>")
+configure_file(cmake/mbevocoder.pc.in "${CMAKE_CURRENT_BINARY_DIR}/mbevocoder.pc.in" @ONLY)
+file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/pkgconfig-$<CONFIG>/mbevocoder.pc"
+    INPUT "${CMAKE_CURRENT_BINARY_DIR}/mbevocoder.pc.in")
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/pkgconfig-$<CONFIG>/mbevocoder.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 configure_file(cmake/libmbe-neo.pc.in "${CMAKE_CURRENT_BINARY_DIR}/libmbe-neo.pc" @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libmbe-neo.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 
