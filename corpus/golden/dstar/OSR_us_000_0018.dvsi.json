@@ -1,0 +1,12 @@
+{
+  "format": "dvsi-channel",
+  "rate": "dstar",
+  "bits_per_frame": 72,
+  "bytes_per_frame": 9,
+  "product": "AMBE3000R",
+  "version": "V120.E100.XXXX.C106.G514.R009.B0010411.C0020208",
+  "source": "OSR_us_000_0018.wav",
+  "input_frames": 750,
+  "flush_frames": 4,
+  "output_frames": 754
+}

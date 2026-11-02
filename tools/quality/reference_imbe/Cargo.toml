@@ -1,0 +1,12 @@
+[package]
+name = "reference-imbe"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+blip25-vocoder = "=1.0.0"
+
+[[bin]]
+name = "reference-imbe"
+path = "main.rs"

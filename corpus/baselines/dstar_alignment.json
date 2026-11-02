@@ -1,0 +1,131 @@
+{
+ "date": "2026-09-24",
+ "what": "D-STAR frame alignment against the AMBE-3000R (docs/plan-dstar.md step 1)",
+ "alignment_sweep_70_files": {
+  "metric": "voiced pitch within 50 cents / mean |gain diff| dB / shape rms dB (same L), our frame vs AMBE-3000R frame at best offset",
+  "input_delay": {
+   "0": [
+    74.5,
+    2.28,
+    2.86
+   ],
+   "30": [
+    79.1,
+    1.79,
+    2.47
+   ],
+   "40": [
+    79.7,
+    1.71,
+    2.38
+   ],
+   "50": [
+    80.1,
+    1.69,
+    2.34
+   ],
+   "60": [
+    79.6,
+    1.71,
+    2.34
+   ],
+   "70": [
+    79.1,
+    1.72,
+    2.38
+   ]
+  },
+  "after_change_kFrameAlign2400_98": {
+   "-10": [
+    79.7,
+    1.69,
+    2.39
+   ],
+   "0": [
+    80.1,
+    1.67,
+    2.34
+   ],
+   "10": [
+    79.6,
+    1.7,
+    2.34
+   ]
+  },
+  "best_offset_frames": {
+   "ambe2450": -1,
+   "dstar": -2
+  }
+ },
+ "framing_noise_70_files_our_decoder": {
+  "input_shifts": [
+   -50,
+   -25,
+   0,
+   25,
+   80
+  ],
+  "pesq_means": [
+   2.9157,
+   2.8833,
+   2.8882,
+   2.8787,
+   2.8708
+  ],
+  "per_file_sd_median": 0.077,
+  "per_file_difference_sd": 0.156,
+  "se_mean_difference": {
+   "12": 0.045,
+   "16": 0.039,
+   "70": 0.019
+  }
+ },
+ "oracle_12_files": {
+  "misaligned_2026-09-22": {
+   "hardware": {
+    "base": 2.8206,
+    "pitch": 2.8213,
+    "voicing": 2.7986,
+    "gain": 2.8399,
+    "shape": 2.8144,
+    "shape_keep": 2.7165,
+    "all": 3.0251,
+    "reference": 3.1318
+   },
+   "software": {
+    "base": 2.8696,
+    "pitch": 2.8788,
+    "voicing": 2.8748,
+    "gain": 2.8127,
+    "shape": 2.8216,
+    "shape_keep": 2.7289,
+    "all": 2.972,
+    "reference": 2.9844
+   }
+  },
+  "aligned": {
+   "hardware": {
+    "base": 2.8693,
+    "pitch": 2.9315,
+    "voicing": 2.8795,
+    "gain": 2.8858,
+    "shape": 2.9852,
+    "shape_keep": 2.8482,
+    "all": 3.0316,
+    "reference": 3.1318
+   },
+   "software": {
+    "base": 2.9334,
+    "pitch": 2.945,
+    "voicing": 2.9433,
+    "gain": 2.9237,
+    "shape": 2.9347,
+    "shape_keep": 2.8239,
+    "all": 2.9731,
+    "reference": 2.9844
+   }
+  },
+  "aligned_tool_sha256": "11dba23cf6c8d83ff0b697f1f4509bb1a424f49e55cd63207cefe2e498bcbf52",
+  "hardware_identify": "product: AMBE3000R\nversion: V120.E100.XXXX.C106.G514.R009.B0010411.C0020208\nport: COM3 @ 460800\n"
+ }
+}

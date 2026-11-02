@@ -1,0 +1,423 @@
+{
+ "source": "DVSI tv-rc.zip test vectors (https://www.dvsinc.com/get-usb/tv-rc.zip), local measurement only",
+ "modes": {
+  "dstar": {
+   "all": {
+    "files": 27,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.931,
+      "estoi": 0.7656
+     },
+     "ours->chip": {
+      "pesq": 3.107,
+      "estoi": 0.7828,
+      "pesq_minus_dvsi_enc": 0.176,
+      "se": 0.03
+     },
+     "chip->chip": {
+      "pesq": 3.023,
+      "estoi": 0.7699,
+      "pesq_minus_dvsi_enc": 0.092,
+      "se": 0.029
+     },
+     "dvsi->ours": {
+      "pesq": 2.879,
+      "estoi": 0.7643
+     },
+     "ours->ours": {
+      "pesq": 3.07,
+      "estoi": 0.7846,
+      "pesq_minus_dvsi_enc": 0.191,
+      "se": 0.035
+     },
+     "chip->ours": {
+      "pesq": 2.975,
+      "estoi": 0.7679,
+      "pesq_minus_dvsi_enc": 0.095,
+      "se": 0.031
+     }
+    }
+   },
+   "development": {
+    "files": 17,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.959,
+      "estoi": 0.7541
+     },
+     "ours->chip": {
+      "pesq": 3.127,
+      "estoi": 0.7718,
+      "pesq_minus_dvsi_enc": 0.168,
+      "se": 0.037
+     },
+     "chip->chip": {
+      "pesq": 3.053,
+      "estoi": 0.7591,
+      "pesq_minus_dvsi_enc": 0.094,
+      "se": 0.037
+     },
+     "dvsi->ours": {
+      "pesq": 2.904,
+      "estoi": 0.7531
+     },
+     "ours->ours": {
+      "pesq": 3.11,
+      "estoi": 0.7738,
+      "pesq_minus_dvsi_enc": 0.206,
+      "se": 0.042
+     },
+     "chip->ours": {
+      "pesq": 2.998,
+      "estoi": 0.757,
+      "pesq_minus_dvsi_enc": 0.095,
+      "se": 0.039
+     }
+    }
+   },
+   "validation": {
+    "files": 7,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.863,
+      "estoi": 0.7644
+     },
+     "ours->chip": {
+      "pesq": 3.087,
+      "estoi": 0.7827,
+      "pesq_minus_dvsi_enc": 0.223,
+      "se": 0.075
+     },
+     "chip->chip": {
+      "pesq": 2.981,
+      "estoi": 0.7688,
+      "pesq_minus_dvsi_enc": 0.118,
+      "se": 0.065
+     },
+     "dvsi->ours": {
+      "pesq": 2.836,
+      "estoi": 0.7644
+     },
+     "ours->ours": {
+      "pesq": 3.041,
+      "estoi": 0.7859,
+      "pesq_minus_dvsi_enc": 0.205,
+      "se": 0.082
+     },
+     "chip->ours": {
+      "pesq": 2.955,
+      "estoi": 0.7686,
+      "pesq_minus_dvsi_enc": 0.119,
+      "se": 0.074
+     }
+    }
+   },
+   "final": {
+    "files": 3,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.925,
+      "estoi": 0.8335
+     },
+     "ours->chip": {
+      "pesq": 3.039,
+      "estoi": 0.8456,
+      "pesq_minus_dvsi_enc": 0.114,
+      "se": 0.02
+     },
+     "chip->chip": {
+      "pesq": 2.948,
+      "estoi": 0.8341,
+      "pesq_minus_dvsi_enc": 0.024,
+      "se": 0.002
+     },
+     "dvsi->ours": {
+      "pesq": 2.841,
+      "estoi": 0.8277
+     },
+     "ours->ours": {
+      "pesq": 2.911,
+      "estoi": 0.8428,
+      "pesq_minus_dvsi_enc": 0.07,
+      "se": 0.071
+     },
+     "chip->ours": {
+      "pesq": 2.885,
+      "estoi": 0.8281,
+      "pesq_minus_dvsi_enc": 0.044,
+      "se": 0.021
+     }
+    }
+   }
+  },
+  "r33": {
+   "all": {
+    "files": 27,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.981,
+      "estoi": 0.769
+     },
+     "ours->chip": {
+      "pesq": 3.131,
+      "estoi": 0.7778,
+      "pesq_minus_dvsi_enc": 0.15,
+      "se": 0.032
+     },
+     "chip->chip": {
+      "pesq": 3.033,
+      "estoi": 0.7759,
+      "pesq_minus_dvsi_enc": 0.053,
+      "se": 0.035
+     },
+     "dvsi->ours": {
+      "pesq": 2.891,
+      "estoi": 0.7624
+     },
+     "ours->ours": {
+      "pesq": 3.126,
+      "estoi": 0.7822,
+      "pesq_minus_dvsi_enc": 0.235,
+      "se": 0.03
+     },
+     "chip->ours": {
+      "pesq": 3.028,
+      "estoi": 0.7703,
+      "pesq_minus_dvsi_enc": 0.137,
+      "se": 0.032
+     }
+    }
+   },
+   "development": {
+    "files": 17,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 3.025,
+      "estoi": 0.7602
+     },
+     "ours->chip": {
+      "pesq": 3.192,
+      "estoi": 0.7715,
+      "pesq_minus_dvsi_enc": 0.167,
+      "se": 0.038
+     },
+     "chip->chip": {
+      "pesq": 3.102,
+      "estoi": 0.7696,
+      "pesq_minus_dvsi_enc": 0.077,
+      "se": 0.044
+     },
+     "dvsi->ours": {
+      "pesq": 2.947,
+      "estoi": 0.754
+     },
+     "ours->ours": {
+      "pesq": 3.19,
+      "estoi": 0.7764,
+      "pesq_minus_dvsi_enc": 0.243,
+      "se": 0.036
+     },
+     "chip->ours": {
+      "pesq": 3.1,
+      "estoi": 0.7637,
+      "pesq_minus_dvsi_enc": 0.153,
+      "se": 0.04
+     }
+    }
+   },
+   "validation": {
+    "files": 7,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.87,
+      "estoi": 0.7635
+     },
+     "ours->chip": {
+      "pesq": 3.055,
+      "estoi": 0.7685,
+      "pesq_minus_dvsi_enc": 0.184,
+      "se": 0.069
+     },
+     "chip->chip": {
+      "pesq": 2.922,
+      "estoi": 0.7683,
+      "pesq_minus_dvsi_enc": 0.052,
+      "se": 0.079
+     },
+     "dvsi->ours": {
+      "pesq": 2.788,
+      "estoi": 0.7588
+     },
+     "ours->ours": {
+      "pesq": 3.05,
+      "estoi": 0.7737,
+      "pesq_minus_dvsi_enc": 0.262,
+      "se": 0.079
+     },
+     "chip->ours": {
+      "pesq": 2.926,
+      "estoi": 0.7653,
+      "pesq_minus_dvsi_enc": 0.138,
+      "se": 0.074
+     }
+    }
+   },
+   "final": {
+    "files": 3,
+    "chains": {
+     "dvsi->chip": {
+      "pesq": 2.986,
+      "estoi": 0.8318
+     },
+     "ours->chip": {
+      "pesq": 2.961,
+      "estoi": 0.8351,
+      "pesq_minus_dvsi_enc": -0.025,
+      "se": 0.031
+     },
+     "chip->chip": {
+      "pesq": 2.902,
+      "estoi": 0.8291,
+      "pesq_minus_dvsi_enc": -0.083,
+      "se": 0.01
+     },
+     "dvsi->ours": {
+      "pesq": 2.813,
+      "estoi": 0.8184
+     },
+     "ours->ours": {
+      "pesq": 2.942,
+      "estoi": 0.8351,
+      "pesq_minus_dvsi_enc": 0.129,
+      "se": 0.017
+     },
+     "chip->ours": {
+      "pesq": 2.858,
+      "estoi": 0.8193,
+      "pesq_minus_dvsi_enc": 0.045,
+      "se": 0.037
+     }
+    }
+   }
+  },
+  "p25": {
+   "all": {
+    "files": 27,
+    "chains": {
+     "dvsi->ours": {
+      "pesq": 2.936,
+      "estoi": 0.7868
+     },
+     "ours->ours": {
+      "pesq": 3.052,
+      "estoi": 0.778,
+      "pesq_minus_dvsi_enc": 0.115,
+      "se": 0.034
+     },
+     "dvsi->jmbe": {
+      "pesq": 2.828,
+      "estoi": 0.7612
+     },
+     "ours->jmbe": {
+      "pesq": 2.961,
+      "estoi": 0.7529,
+      "pesq_minus_dvsi_enc": 0.133,
+      "se": 0.031
+     },
+     "dvsi->dvsi": {
+      "pesq": 3.026,
+      "estoi": 0.7918
+     }
+    }
+   },
+   "development": {
+    "files": 17,
+    "chains": {
+     "dvsi->ours": {
+      "pesq": 2.955,
+      "estoi": 0.7757
+     },
+     "ours->ours": {
+      "pesq": 3.079,
+      "estoi": 0.7665,
+      "pesq_minus_dvsi_enc": 0.124,
+      "se": 0.044
+     },
+     "dvsi->jmbe": {
+      "pesq": 2.855,
+      "estoi": 0.7511
+     },
+     "ours->jmbe": {
+      "pesq": 3.01,
+      "estoi": 0.7422,
+      "pesq_minus_dvsi_enc": 0.155,
+      "se": 0.035
+     },
+     "dvsi->dvsi": {
+      "pesq": 3.049,
+      "estoi": 0.7827
+     }
+    }
+   },
+   "validation": {
+    "files": 7,
+    "chains": {
+     "dvsi->ours": {
+      "pesq": 2.893,
+      "estoi": 0.7884
+     },
+     "ours->ours": {
+      "pesq": 3.046,
+      "estoi": 0.7784,
+      "pesq_minus_dvsi_enc": 0.154,
+      "se": 0.071
+     },
+     "dvsi->jmbe": {
+      "pesq": 2.76,
+      "estoi": 0.756
+     },
+     "ours->jmbe": {
+      "pesq": 2.898,
+      "estoi": 0.747,
+      "pesq_minus_dvsi_enc": 0.138,
+      "se": 0.079
+     },
+     "dvsi->dvsi": {
+      "pesq": 2.965,
+      "estoi": 0.7883
+     }
+    }
+   },
+   "final": {
+    "files": 3,
+    "chains": {
+     "dvsi->ours": {
+      "pesq": 2.93,
+      "estoi": 0.8461
+     },
+     "ours->ours": {
+      "pesq": 2.911,
+      "estoi": 0.8422,
+      "pesq_minus_dvsi_enc": -0.02,
+      "se": 0.005
+     },
+     "dvsi->jmbe": {
+      "pesq": 2.833,
+      "estoi": 0.831
+     },
+     "ours->jmbe": {
+      "pesq": 2.834,
+      "estoi": 0.8277,
+      "pesq_minus_dvsi_enc": 0.001,
+      "se": 0.05
+     },
+     "dvsi->dvsi": {
+      "pesq": 3.035,
+      "estoi": 0.8513
+     }
+    }
+   }
+  }
+ }
+}

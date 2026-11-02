@@ -1,0 +1,6 @@
+# The package name mbelib-neo installs under, for consumers that require it by that name (dsdcc's
+# FindLibMbeNeo writes "Requires: libmbe-neo" into its own .pc file). Everything comes from mbevocoder.
+Name: libmbe-neo
+Description: mbelib-neo compatible name for mbevocoder @PROJECT_VERSION@
+Version: @PROJECT_VERSION@
+Requires: mbevocoder = @PROJECT_VERSION@

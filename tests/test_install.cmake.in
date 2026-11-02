@@ -1,0 +1,70 @@
+# Build and run genuine C-only consumers against a staged installation.
+cmake_minimum_required(VERSION 3.21)
+set(prefix "@CMAKE_CURRENT_BINARY_DIR@/package-install")
+set(consumer_build "@CMAKE_CURRENT_BINARY_DIR@/package-consumer-build")
+file(REMOVE_RECURSE "${prefix}")
+execute_process(COMMAND "@CMAKE_COMMAND@" --install "@PROJECT_BINARY_DIR@"
+    --prefix "${prefix}" --config "${config}" COMMAND_ERROR_IS_FATAL ANY)
+
+# What the install must contain: the licence texts, a relocatable pkg-config file, and no
+# command-line tools unless MBEVOCODER_INSTALL_TOOLS asks for them.
+foreach(f LICENSE NOTICE.md LICENSES/ISC-mbelib.txt LICENSES/BSD-PFFFT-FFTPACK.txt)
+    if(NOT EXISTS "${prefix}/@CMAKE_INSTALL_DOCDIR@/${f}")
+        message(FATAL_ERROR "install lacks @CMAKE_INSTALL_DOCDIR@/${f}")
+    endif()
+endforeach()
+file(READ "${prefix}/@CMAKE_INSTALL_LIBDIR@/pkgconfig/mbevocoder.pc" pc)
+string(FIND "${pc}" "prefix=\${pcfiledir}" relocatable)
+if(NOT IS_ABSOLUTE "@CMAKE_INSTALL_LIBDIR@" AND relocatable EQUAL -1)
+    message(FATAL_ERROR "mbevocoder.pc is not relocatable: ${pc}")
+endif()
+if(NOT @MBEVOCODER_INSTALL_TOOLS@)
+    file(GLOB tools "${prefix}/@CMAKE_INSTALL_BINDIR@/mbe-cli*" "${prefix}/@CMAKE_INSTALL_BINDIR@/ambe3000*")
+    if(tools)
+        message(FATAL_ERROR "tools installed without MBEVOCODER_INSTALL_TOOLS: ${tools}")
+    endif()
+endif()
+
+set(configure_args -G "@CMAKE_GENERATOR@"
+    "-DCMAKE_MAKE_PROGRAM=@CMAKE_MAKE_PROGRAM@"
+    "-DCMAKE_C_COMPILER=@CMAKE_C_COMPILER@"
+    "-DCMAKE_C_FLAGS=@CMAKE_C_FLAGS@"
+    "-DCMAKE_BUILD_TYPE=@CMAKE_BUILD_TYPE@"
+    "-DCMAKE_EXE_LINKER_FLAGS=@CMAKE_EXE_LINKER_FLAGS@"
+    "-DCMAKE_PREFIX_PATH=${prefix}")
+if(NOT "@CMAKE_GENERATOR_PLATFORM@" STREQUAL "")
+    list(APPEND configure_args -A "@CMAKE_GENERATOR_PLATFORM@")
+endif()
+if(NOT "@CMAKE_GENERATOR_TOOLSET@" STREQUAL "")
+    list(APPEND configure_args -T "@CMAKE_GENERATOR_TOOLSET@")
+endif()
+if(NOT "@CMAKE_TOOLCHAIN_FILE@" STREQUAL "")
+    list(APPEND configure_args "-DCMAKE_TOOLCHAIN_FILE=@CMAKE_TOOLCHAIN_FILE@")
+endif()
+# Consumers of instrumented archives must also link the instrumentation runtime.
+set(sanitizers "")
+if(@MBEVOCODER_ENABLE_ASAN@)
+    list(APPEND sanitizers address)
+endif()
+if(@MBEVOCODER_ENABLE_UBSAN@)
+    list(APPEND sanitizers undefined)
+endif()
+if(@MBEVOCODER_ENABLE_TSAN@)
+    list(APPEND sanitizers thread)
+endif()
+if(sanitizers AND NOT "@MSVC@")
+    list(JOIN sanitizers "," sanitizer_flags)
+    list(APPEND configure_args "-DCMAKE_EXE_LINKER_FLAGS=@CMAKE_EXE_LINKER_FLAGS@ -fsanitize=${sanitizer_flags}")
+endif()
+if(NOT "@PKG_CONFIG_EXECUTABLE@" STREQUAL "" AND NOT "@MSVC@")
+    list(APPEND configure_args -DMBEVOCODER_TEST_PKG_CONFIG=ON
+        "-DMBEVOCODER_TEST_PC_FILE=${prefix}/@CMAKE_INSTALL_LIBDIR@/pkgconfig/mbevocoder.pc"
+        "-DPKG_CONFIG_EXECUTABLE=@PKG_CONFIG_EXECUTABLE@")
+endif()
+execute_process(COMMAND "@CMAKE_COMMAND@"
+    -S "@CMAKE_CURRENT_SOURCE_DIR@/package_consumer" -B "${consumer_build}"
+    ${configure_args} COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND "@CMAKE_COMMAND@" --build "${consumer_build}"
+    --config "${config}" COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND "@CMAKE_CTEST_COMMAND@" --test-dir "${consumer_build}"
+    -C "${config}" --output-on-failure COMMAND_ERROR_IS_FATAL ANY)

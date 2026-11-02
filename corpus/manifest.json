@@ -1,0 +1,54 @@
+{
+  "description": "Sources for the mbevocoder test corpus. tools/corpus/fetch.py downloads these into corpus/raw/ (git-ignored); tools/corpus/prepare.py builds the 8 kHz, level-normalised test set into testdata/corpus/. See SOURCES.md for licences.",
+  "target_level_dbov": -26,
+  "sample_rate": 8000,
+  "sources": [
+    {
+      "id": "osr_us",
+      "name": "Open Speech Repository, American English (Harvard sentences)",
+      "kind": "html-index",
+      "url": "https://www.voiptroubleshooter.com/open_speech/american.html",
+      "base": "https://www.voiptroubleshooter.com/open_speech/",
+      "license": "Free for VoIP testing, research, development and other reasonable use; credit 'Open Speech Repository'",
+      "native_rate": 8000,
+      "select": { "files": 12, "max_seconds": 15 }
+    },
+    {
+      "id": "osr_uk",
+      "name": "Open Speech Repository, British English (Harvard sentences)",
+      "kind": "html-index",
+      "url": "https://www.voiptroubleshooter.com/open_speech/british.html",
+      "base": "https://www.voiptroubleshooter.com/open_speech/",
+      "license": "Free for VoIP testing, research, development and other reasonable use; credit 'Open Speech Repository'",
+      "native_rate": 8000,
+      "select": { "files": 8, "max_seconds": 15 }
+    },
+    {
+      "id": "arctic_bdl",
+      "name": "CMU ARCTIC, speaker bdl (US English, male)",
+      "kind": "tarball",
+      "url": "http://festvox.org/cmu_arctic/cmu_arctic/packed/cmu_us_bdl_arctic-0.95-release.tar.bz2",
+      "license": "CMU ARCTIC licence (BSD-style, free for any purpose with notice)",
+      "native_rate": 16000,
+      "select": { "glob": "cmu_us_bdl_arctic/wav/arctic_a00*.wav", "files": 15 }
+    },
+    {
+      "id": "arctic_slt",
+      "name": "CMU ARCTIC, speaker slt (US English, female)",
+      "kind": "tarball",
+      "url": "http://festvox.org/cmu_arctic/cmu_arctic/packed/cmu_us_slt_arctic-0.95-release.tar.bz2",
+      "license": "CMU ARCTIC licence (BSD-style, free for any purpose with notice)",
+      "native_rate": 16000,
+      "select": { "glob": "cmu_us_slt_arctic/wav/arctic_a00*.wav", "files": 15 }
+    },
+    {
+      "id": "librispeech_test_clean",
+      "name": "LibriSpeech test-clean",
+      "kind": "tarball",
+      "url": "https://www.openslr.org/resources/12/test-clean.tar.gz",
+      "license": "CC BY 4.0",
+      "native_rate": 16000,
+      "select": { "speakers": { "male": 2, "female": 2 }, "utterances_per_speaker": 5, "max_seconds": 8 }
+    }
+  ]
+}

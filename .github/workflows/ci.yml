@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: "Linux GCC",          os: ubuntu-24.04, preset: release,    cc: gcc,   cxx: g++ }
+          - { name: "Linux Clang",        os: ubuntu-24.04, preset: release,    cc: clang, cxx: clang++ }
+          - { name: "Linux ASan/UBSan",   os: ubuntu-24.04, preset: asan-ubsan, cc: clang, cxx: clang++ }
+          - { name: "Linux strict FP",    os: ubuntu-24.04, preset: strict-fp,  cc: gcc,   cxx: g++ }
+          - { name: "Linux neo-compat",   os: ubuntu-24.04, preset: neo-compat, cc: gcc,   cxx: g++ }
+          - { name: "macOS arm64",        os: macos-15,     preset: release }
+          - { name: "macOS x86_64",       os: macos-13,     preset: release }
+          - { name: "Windows MSVC",       os: windows-2025, preset: vs2026 }
+          - { name: "Windows MinGW",      os: windows-2025, preset: release, mingw: true }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v5
+        if: ${{ !matrix.mingw && !contains(matrix.preset, 'vs') }}
+      - name: Set up MinGW
+        if: ${{ matrix.mingw }}
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          install: mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja
+      - name: Configure (MinGW)
+        if: ${{ matrix.mingw }}
+        shell: msys2 {0}
+        run: cmake --preset ${{ matrix.preset }}
+      - name: Build and test (MinGW)
+        if: ${{ matrix.mingw }}
+        shell: msys2 {0}
+        run: cmake --build --preset ${{ matrix.preset }} && ctest --preset ${{ matrix.preset }} -LE "hil|bench"
+      - name: Configure
+        if: ${{ !matrix.mingw }}
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+        run: cmake --preset ${{ matrix.preset }} -DMBEVOCODER_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        if: ${{ !matrix.mingw }}
+        run: cmake --build --preset ${{ matrix.preset }}
+      - name: Test
+        if: ${{ !matrix.mingw }}
+        run: ctest --preset ${{ matrix.preset }} -LE "hil|bench"
+
+  android:
+    name: Android ${{ matrix.abi }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        abi: [arm64, armv7, x86_64]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: seanmiddleditch/gha-setup-ninja@v5
+      - name: Configure and build
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_LATEST_HOME }}
+        run: |
+          cmake --preset android-${{ matrix.abi }} -DMBEVOCODER_WARNINGS_AS_ERRORS=ON
+          cmake --build --preset android-${{ matrix.abi }}

@@ -1,0 +1,11 @@
+prefix=@MBEVOCODER_PC_PREFIX@
+exec_prefix=${prefix}
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+
+Name: mbevocoder
+Description: @PROJECT_DESCRIPTION@
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lmbevocoder
+Libs.private: @MBEVOCODER_PC_PRIVATE_LIBS@
+Cflags: -I${includedir} -DMBE_STATIC

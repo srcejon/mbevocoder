@@ -1,0 +1,16 @@
+@PACKAGE_INIT@
+
+# mbelib-neo compatibility package. mbevocoder exports the same mbe_* API and the
+# <mbelib-neo/mbelib.h> header, so consumers that do find_package(mbe-neo CONFIG)
+# and link mbe_neo::mbe_static or mbe_neo::mbe_shared get this library instead.
+include("${CMAKE_CURRENT_LIST_DIR}/../mbevocoder/mbevocoderTargets.cmake")
+
+if(NOT TARGET mbe_neo::mbe_static)
+    add_library(mbe_neo::mbe_static INTERFACE IMPORTED)
+    set_target_properties(mbe_neo::mbe_static PROPERTIES INTERFACE_LINK_LIBRARIES mbevocoder::mbevocoder)
+endif()
+if(NOT TARGET mbe_neo::mbe_shared)
+    add_library(mbe_neo::mbe_shared INTERFACE IMPORTED)
+    set_target_properties(mbe_neo::mbe_shared PROPERTIES INTERFACE_LINK_LIBRARIES mbevocoder::mbevocoder)
+endif()
+check_required_components(mbe-neo)

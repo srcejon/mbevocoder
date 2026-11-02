@@ -1,0 +1,24 @@
+build/
+build-install/
+out/
+.vs/
+.vscode/
+.cache/
+*.user
+__pycache__/
+*.pyc
+
+# Large test assets are fetched into the build tree or kept in testdata/, never committed.
+testdata/
+corpus/audio/
+corpus/raw/
+corpus/work/
+*.wav
+*.flac
+!tests/data/*.wav
+
+# Local launch configuration for the desktop preview
+.claude/
+
+# The owner's working plan, kept out of the repository
+PLAN.md

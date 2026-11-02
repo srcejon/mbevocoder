@@ -1,0 +1,626 @@
+{
+ "description": "AMBE-3000R encoder output (PKT_ECMODE 0x0040 tone detection, then PKT_INIT 0x01) for 1 s tones between 0.2 s of silence; 74 frames of 9 bytes (AMBE+2: DMR layout MSB first; D-STAR: D-STAR layout LSB first). Tone frames are frames 11..60.",
+ "captures": {
+  "t1000": {
+   "freqs": [
+    1000
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 32,
+    "ad": 112
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 32,
+    "volume": 208
+   }
+  },
+  "t500": {
+   "freqs": [
+    500
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 49,
+    "id": 16,
+    "ad": 113
+   },
+   "dstar": {
+    "tone_frames": 49,
+    "id": 16,
+    "volume": 208
+   }
+  },
+  "t2000": {
+   "freqs": [
+    2000
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 64,
+    "ad": 112
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 64,
+    "volume": 208
+   }
+  },
+  "t1000_loud": {
+   "freqs": [
+    1000
+   ],
+   "amplitude": 0.9,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 32,
+    "ad": 126
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 32,
+    "volume": 235
+   }
+  },
+  "t1000_quiet": {
+   "freqs": [
+    1000
+   ],
+   "amplitude": 0.03,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 32,
+    "ad": 84
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 32,
+    "volume": 151
+   }
+  },
+  "dtmf1": {
+   "freqs": [
+    697,
+    1209
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 129,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 128,
+    "volume": 191
+   }
+  },
+  "d0": {
+   "freqs": [
+    941,
+    1336
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 128,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 135,
+    "volume": 191
+   }
+  },
+  "d2": {
+   "freqs": [
+    697,
+    1336
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 130,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 132,
+    "volume": 191
+   }
+  },
+  "d5": {
+   "freqs": [
+    770,
+    1336
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 133,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 133,
+    "volume": 191
+   }
+  },
+  "d9": {
+   "freqs": [
+    852,
+    1477
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 137,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 138,
+    "volume": 191
+   }
+  },
+  "dstar": {
+   "freqs": [
+    941,
+    1209
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 142,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 131,
+    "volume": 191
+   }
+  },
+  "dhash": {
+   "freqs": [
+    941,
+    1477
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 143,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 139,
+    "volume": 191
+   }
+  },
+  "dA": {
+   "freqs": [
+    697,
+    1633
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 138,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 140,
+    "volume": 191
+   }
+  },
+  "dD": {
+   "freqs": [
+    941,
+    1633
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 141,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 143,
+    "volume": 191
+   }
+  },
+  "cp_dial": {
+   "freqs": [
+    350,
+    440
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 160,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 144,
+    "volume": 191
+   }
+  },
+  "cp_ring": {
+   "freqs": [
+    440,
+    480
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 161,
+    "ad": 102
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 145,
+    "volume": 189
+   }
+  },
+  "cp_busy": {
+   "freqs": [
+    480,
+    620
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 162,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 146,
+    "volume": 191
+   }
+  },
+  "cp_reorder": {
+   "freqs": [
+    350,
+    490
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 163,
+    "ad": 104
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 147,
+    "volume": 191
+   }
+  },
+  "s156": {
+   "freqs": [
+    156.25
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 49,
+    "id": 5,
+    "ad": 112
+   },
+   "dstar": {
+    "tone_frames": 49,
+    "id": 5,
+    "volume": 208
+   }
+  },
+  "s187": {
+   "freqs": [
+    187.5
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 49,
+    "id": 6,
+    "ad": 112
+   },
+   "dstar": {
+    "tone_frames": 49,
+    "id": 6,
+    "volume": 208
+   }
+  },
+  "s218": {
+   "freqs": [
+    218.75
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 49,
+    "id": 7,
+    "ad": 112
+   },
+   "dstar": {
+    "tone_frames": 49,
+    "id": 7,
+    "volume": 208
+   }
+  },
+  "s3812": {
+   "freqs": [
+    3812.5
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 122,
+    "ad": 113
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 122,
+    "volume": 208
+   }
+  },
+  "s1500": {
+   "freqs": [
+    1500
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 48,
+    "ad": 113
+   },
+   "dstar": {
+    "tone_frames": 50,
+    "id": 48,
+    "volume": 208
+   }
+  },
+  "k0": {
+   "freqs": [
+    1162,
+    820
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 144,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k1": {
+   "freqs": [
+    1052,
+    606
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 145,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k2": {
+   "freqs": [
+    1162,
+    606
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 146,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k3": {
+   "freqs": [
+    1279,
+    606
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 147,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k4": {
+   "freqs": [
+    1052,
+    672
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 148,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k5": {
+   "freqs": [
+    1162,
+    672
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 149,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k6": {
+   "freqs": [
+    1279,
+    672
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 150,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k7": {
+   "freqs": [
+    1052,
+    743
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 151,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k8": {
+   "freqs": [
+    1162,
+    743
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 152,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k9": {
+   "freqs": [
+    1279,
+    743
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 153,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k10": {
+   "freqs": [
+    1430,
+    606
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 154,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k11": {
+   "freqs": [
+    1430,
+    672
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 155,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k12": {
+   "freqs": [
+    1430,
+    743
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 156,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k13": {
+   "freqs": [
+    1430,
+    820
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 157,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k14": {
+   "freqs": [
+    1052,
+    820
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 158,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  },
+  "k15": {
+   "freqs": [
+    1279,
+    820
+   ],
+   "amplitude": 0.3,
+   "ambe2450": {
+    "tone_frames": 50,
+    "id": 159,
+    "ad": 105
+   },
+   "dstar": {
+    "tone_frames": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,25 @@
+# Doxygen configuration for mbevocoder (public API only). Run: doxygen Doxyfile -> build/doxygen/html
+PROJECT_NAME           = "mbevocoder"
+PROJECT_BRIEF          = "AMBE, AMBE+2 and IMBE vocoder library"
+OUTPUT_DIRECTORY       = build/doxygen
+INPUT                  = include/mbevocoder/mbevocoder.h include/mbelib-neo/mbelib.h include/mbelib/mbelib.h docs/user-guide.md docs/decoder-quality.md docs/encoder-quality.md docs/bit-order.md docs/tone-frames.md docs/transcoder.md docs/frontend.md docs/benchmarks.md README.md tools/quality/README.md
+USE_MDFILE_AS_MAINPAGE = docs/user-guide.md
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = NO
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+MARKDOWN_SUPPORT       = YES
+TAB_SIZE               = 4
+SORT_MEMBER_DOCS       = NO
+GENERATE_LATEX         = NO
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = NO
+PREDEFINED             = MBE_API= "MBE_DEPRECATED(x)=" "MBE_DEPRECATED_FOR(x)="
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+FULL_PATH_NAMES        = NO
+SHOW_INCLUDE_FILES     = NO

@@ -1,0 +1,25 @@
+{
+ "date": "2026-09-24",
+ "what": "Streaming C++ port of the D-STAR pitch-correction and band-energy analysis (MBELIB_DSTAR_PITCH_ANALYSIS, src/encoder/dstar_analysis.cpp) against the offline reference of 22-23 September (build/dstar-analysis prototype.py energy_grid + build/dstar-perception analysis.py tracked_pitch), both on top of MBELIB_DSTAR_WEIGHTED_QUANTIZER, on the 536 ladder inputs (134 recordings x 4 framings, dstar_ladder_inputs.py)",
+ "frames": 206662,
+ "differing_frames": 1017,
+ "files_differing_only_in_last_6_frames": 499,
+ "files_differing_elsewhere": {
+  "OSR_us_000_0014__f40": "from frame 417, pitch unchanged: spectral indices differ, a rounding tie (the reference passes targets through %.9g text)",
+  "libri_3729-6852-0001__f0": "from frame 3: the reference low-passes the padded file and keeps the filter pre-ringing before time zero (corr 0.702 against the 0.7 gate), the unpadded reference and the stream zero it (0.700)"
+ },
+ "tail_cause": "the reference zero-fills the signal after the end of the file; a stream keeps the DC blocker tail through the encoder flush frames",
+ "score_effect_our_decoder": {
+  "pesq_mean_difference": 0.0,
+  "max_abs_pesq_difference": 0.016,
+  "files_with_any_pesq_change": 2
+ },
+ "other_codecs_with_option_on": "AMBE+2, raw 2450, IMBE 7200, IMBE 4400 byte-identical to the default build (16 of 16)",
+ "default_build_unchanged": "77 of 77 sampled D-STAR files byte-identical after the voicing-row refactor",
+ "run_time": "15 s D-STAR encode, median wall time: default 0.190 s, weighted 0.208 s, weighted+analysis 0.369 s (41x real time)",
+ "tests": "15/15 on MSVC with and without the option and on Cygwin GCC (warnings as errors) with and without it",
+ "executables": {
+  "port": "b392b8d921bb41357851e6847f6b173a32889652eb7e051618b698fa446db3d3",
+  "reference_weighted": "06fd48e72f9e66749197bbe34a95a4d4a73ba30c5a4b2145a416e3db1ec7c7ad"
+ }
+}
