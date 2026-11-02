@@ -36,9 +36,10 @@ int main()
 {
     const int streams = 8, frames = 400;
     std::vector<std::vector<float>> alone(streams), together(streams);
-    // Reference: each stream on its own fresh thread.
+    // Reference: each stream on its own fresh thread. Every decoder thread releases its FFT plan
+    // before it ends, as the API asks (LeakSanitizer reports the plan otherwise).
     for (int s = 0; s < streams; ++s) {
-        std::thread t([&, s] { alone[s] = decodeStream(static_cast<uint32_t>(s + 1), frames); });
+        std::thread t([&, s] { alone[s] = decodeStream(static_cast<uint32_t>(s + 1), frames); mbe_freeThreadResources(); });
         t.join();
     }
     // Concurrent: all streams at once, plus two streams sharing one thread back to back.
@@ -72,6 +73,7 @@ int main()
                     (which ? b : a).insert((which ? b : a).end(), pcm, pcm + 160);
                 }
             }
+            mbe_freeThreadResources();
         });
         t.join();
     }

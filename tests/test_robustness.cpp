@@ -12,6 +12,7 @@
 
 namespace {
 
+#if MBEVOCODER_CHIP_MEASURED
 bool finiteModel(const mbe_parms& p)
 {
     if (!std::isfinite(p.w0) || !std::isfinite(p.gamma)) return false;
@@ -19,6 +20,7 @@ bool finiteModel(const mbe_parms& p)
         if (!std::isfinite(p.Ml[l]) || !std::isfinite(p.log2Ml[l])) return false;
     return true;
 }
+#endif
 
 bool finite(const float* x)
 {
@@ -32,7 +34,7 @@ void packVoice(char d[49])
     CHECK_EQ(mbe_packAmbe2450Fields(b, d), 0);
 }
 
-// D1: the adaptive amplitude threshold accumulates on every errored frame. Started just below
+// the adaptive amplitude threshold accumulates on every errored frame. Started just below
 // INT_MAX (where hours of marginal reception took it), one more errored frame overflowed int;
 // now it saturates and the frame is still rendered.
 void adaptiveThreshold()
@@ -55,7 +57,7 @@ void adaptiveThreshold()
     CHECK_EQ(enh.amplitudeThreshold, INT_MAX);   // saturated, where int overflowed
 }
 
-// D4: an AMBE+2 erasure frame followed by repeats (C0 errors, or lost frames) repeats a model
+// an AMBE+2 erasure frame followed by repeats (C0 errors, or lost frames) repeats a model
 // with w0 = 0, whose spectral enhancement was 0/0. Output and model stay finite and the stream
 // recovers on the next good frame.
 void repeatedErasure()
@@ -101,7 +103,7 @@ void repeatedErasure()
     }
 }
 
-// D6: a long run of lost frames holds the mute without the repeat count growing.
+// a long run of lost frames holds the mute without the repeat count growing.
 void lostFrameCount()
 {
     mbe_parms cur, prev, enh;
@@ -119,6 +121,7 @@ void lostFrameCount()
 #endif
 }
 
+#if MBEVOCODER_CHIP_MEASURED
 double energy(const float* x)
 {
     double e = 0.0;
@@ -126,8 +129,7 @@ double energy(const float* x)
     return e;
 }
 
-#if MBEVOCODER_CHIP_MEASURED
-// D2: soft-decision C0 (AMBE+2). Four errors in C0 make the hard word a detected-uncorrectable
+// soft-decision C0 (AMBE+2). Four errors in C0 make the hard word a detected-uncorrectable
 // pattern; on weak bits the soft search recovers the word and the frame decodes, on strong bits
 // it stays uncorrectable (c0_errors 4: repeated).
 void softC0()
@@ -186,7 +188,7 @@ void softImbeCount()
     }
 }
 
-// D-STAR voice frames for D5 / D3: a steady voice
+// D-STAR voice frames for the tone and mute tests below: a steady voice
 void packDstarVoice(char d[49])
 {
     const int b[9] = {40, 6, 30, 200, 60, 8, 7, 9, 4};
@@ -199,7 +201,7 @@ void dstarFrame(const char d[49], int c0Flips, char fr[4][24])
     for (int k = 0; k < c0Flips; ++k) fr[0][22 - 3 * k] ^= 1;   // C0 data bits
 }
 
-// D5: a D-STAR tone frame whose C0 the FEC corrects plays as a tone, whatever the count (the
+// a D-STAR tone frame whose C0 the FEC corrects plays as a tone, whatever the count (the
 // AMBE-3000R's rule); one it cannot render (an invalid index) repeats the last frame. Neither
 // resets the predictor: the voice frames after come out as they do around a clean tone frame.
 void dstarToneFrames()
@@ -237,7 +239,7 @@ void dstarToneFrames()
     CHECK(after > 0.5 * afterClean && after < 2.0 * afterClean);
 }
 
-// D3: the first frame decoded after a lost-frame mute comes out near the level of the same frame
+// the first frame decoded after a lost-frame mute comes out near the level of the same frame
 // in an unbroken stream (it used to carry the repeated model's tails at full level, 3-8 dB high).
 void afterMute()
 {

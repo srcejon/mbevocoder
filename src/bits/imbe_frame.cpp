@@ -50,6 +50,8 @@ int golayWordErrors(const char rx[23], const char out[23], int dataOnly)
 // is trusted when the bits it overrules are weak, their reliabilities summing to at most
 // MBE_SOFT_IMBE_TRUST times the word's mean reliability, and then counts as a hard decoder's
 // worst correctable word; otherwise the whole distance counts. cw: the decoded codeword's bits.
+// neo-compat counts as the hard decoder does and has no use for it.
+#if MBEVOCODER_CHIP_MEASURED
 int softWordErrors(const mbe_soft_bit* in, const char* cw, int n, int correctable)
 {
     int dist = 0;
@@ -58,14 +60,11 @@ int softWordErrors(const mbe_soft_bit* in, const char* cw, int n, int correctabl
         total += in[i].reliability;
         if (static_cast<int>(in[i].bit & 1u) != (cw[i] & 1)) { ++dist; overruled += in[i].reliability; }
     }
-#if MBEVOCODER_CHIP_MEASURED
     if (dist > correctable && MBE_SOFT_IMBE_TRUST > 0.0 && total > 0.0 && overruled <= MBE_SOFT_IMBE_TRUST * total / n)
         return correctable;
-#else
-    (void)correctable;
-#endif
     return dist;
 }
+#endif
 
 // Soft Golay(23,12): the decoded word's error count under the rule above (CHIP) or the hard
 // path's count (neo-compat).
